@@ -1,19 +1,21 @@
-import logo from './logo.svg';
+
 import './App.css';
-import Header from './components/Header';
-import Form from "./components/Form"
-import Info from "./components/Info"
+import Header from './Header';
+import Form from "./Form"
+import Info from "./Info"
 import React from 'react';
+
 
 const API_KEY = "b9b52b7cae0f713be77573ff04ebe52b"
 
 export default class App extends React.Component {
 
   state = {
-    temp: undefined,
-    city: undefined,
-    country: undefined,
-    error: undefined
+    temp: "",
+    city: "",
+    country: "",
+    humidity: "",
+    error: ""
   }
 
   gettingWeather = async (e) => {
@@ -27,13 +29,15 @@ export default class App extends React.Component {
       temp: data.main.temp,
       city: data.name,
       country: data.sys.country,
+      humidity: data.main.humidity,
       error: ""
     });
   } else {
     this.setState({
-      temp: undefined,
-      city: undefined,
-      country: undefined,
+      temp: "",
+      city: "",
+      country: "",
+      humidity: "",
       error: "Error"
     });
 
@@ -43,12 +47,16 @@ export default class App extends React.Component {
     return (
       <div className="App">
         <Header />
-        <Form weatherMethod={this.gettingWeather}/>
+        <Form 
+        weatherMethod={this.gettingWeather}/>
+        <div className='weather-info'>
         <Info 
         temp ={this.state.temp}
         city ={this.state.city}
         country ={this.state.country}
+        humidity = {this.state.humidity}
         error={this.state.error} />
+        </div>
       </div>
     );
   }

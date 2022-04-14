@@ -1,0 +1,16 @@
+.w-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;;
+}
+.info{
+    display: flex;
+    justify-content: center;
+}
+.info-title{
+    font-weight: bold;
+    margin-right: 10px;
+}
+.info-title:last-child{
+    margin-left:5px;
+}
